@@ -1,14 +1,23 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "imkerei-hoffmann-shop",
+  "description": "Shop website for our family-run honey farm ",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Michael Hoffmann <kontakt@mokkaps.de>",
   "dependencies": {
-    "gatsby": "^1.9.277",
+    "gatsby": "^1.9.76",
+    "gatsby-image": "^1.0.51",
     "gatsby-link": "^1.6.46",
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-stripe-checkout": "^1.0.5",
-    "react-helmet": "^5.2.0"
+    "gatsby-source-filesystem": "^1.5.39",
+    "gatsby-transformer-json": "^1.0.20",
+    "react-headroom": "^2.2.2",
+    "react-helmet": "^5.2.0",
+    "react-stripe-checkout": "^2.6.3",
+    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-react": "^0.82.2",
+    "slug": "^0.9.1",
+    "styled-components": "^3.4.0"
   },
   "keywords": [
     "gatsby"
@@ -25,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/Mokkapps/imkerei-hoffmann-shop"
   }
 }

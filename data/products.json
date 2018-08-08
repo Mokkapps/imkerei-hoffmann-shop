@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Waldhonig",
+    "type": "Type",
+    "id": "1",
+    "description": "desc",
+    "price": "1 €",
+    "image": "honey1.jpg",
+    "featured": false,
+    "status": "available"
+  },
+  {
+    "name": "Blütenhonig",
+    "type": "Type",
+    "id": "2",
+    "description": "desc",
+    "price": "2 €",
+    "image": "honey2.jpg",
+    "featured": false,
+    "status": "available"
+  }
+]
