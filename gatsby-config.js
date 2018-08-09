@@ -29,5 +29,7 @@ module.exports = {
     'gatsby-plugin-stripe-checkout',
     // This plugin transforms JSON file nodes.
     `gatsby-transformer-json`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`
   ],
 }

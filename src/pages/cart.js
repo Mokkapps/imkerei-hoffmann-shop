@@ -13,8 +13,8 @@ export default class Cart extends React.Component {
   componentDidMount() {
     this.setState({
       items: this.props.data.allProductsJson.edges,
-      meta,
-      cartId,
+      meta: '',
+      cartId: '',
       loading: false,
     })
   }

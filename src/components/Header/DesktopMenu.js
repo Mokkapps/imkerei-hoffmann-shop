@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Link, { withPrefix } from 'gatsby-link'
-import { Menu, Container, Icon } from 'semantic-ui-react'
+import { Menu, Container } from 'semantic-ui-react'
 
 import ShoppingCartIcon from './ShoppingCartIcon'
 import Logo from './Logo'
@@ -23,7 +23,7 @@ class DesktopMenu extends Component {
 
   render() {
     const { activeItem } = this.state
-    const { token, cartCount } = this.props
+    const { cartCount } = this.props
     return (
       <Menu size="huge" borderless pointing>
         <Container text>
@@ -36,49 +36,15 @@ class DesktopMenu extends Component {
             <Logo />
             Imkerei Hoffmann Shop
           </Menu.Item>
-          {token ? (
-            <Menu.Menu position="right">
-              <Menu.Item
-                as={Link}
-                to="/myaccount/"
-                active={activeItem === withPrefix('/myaccount/')}
-              >
-                <Icon name="user" />
-                My Account
-              </Menu.Item>
-              <Menu.Item
-                as={Link}
-                to="/cart/"
-                active={activeItem === withPrefix('/cart/')}
-              >
-                <ShoppingCartIcon cartCount={cartCount} name="Cart" />
-              </Menu.Item>
-            </Menu.Menu>
-          ) : (
-            <Menu.Menu position="right">
-              <Menu.Item
-                as={Link}
-                to="/register/"
-                active={activeItem === withPrefix('/register/')}
-              >
-                Sign up
-              </Menu.Item>
-              <Menu.Item
-                as={Link}
-                to="/login/"
-                active={activeItem === withPrefix('/login/')}
-              >
-                Sign in
-              </Menu.Item>
-              <Menu.Item
-                as={Link}
-                to="/cart/"
-                active={activeItem === withPrefix('/cart/')}
-              >
-                <ShoppingCartIcon cartCount={cartCount} name="Cart" />
-              </Menu.Item>
-            </Menu.Menu>
-          )}
+          <Menu.Menu position="right">
+            <Menu.Item
+              as={Link}
+              to="/cart/"
+              active={activeItem === withPrefix('/cart/')}
+            >
+              <ShoppingCartIcon cartCount={cartCount} name="Cart" />
+            </Menu.Item>
+          </Menu.Menu>
         </Container>
       </Menu>
     )

@@ -1,12 +1,10 @@
 /* eslint-disable */
 
 import React from 'react'
-import get from 'lodash/get'
-import { Image, Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
 
 import ProductList from '../components/ProductList'
-import logo from '../images/logo.png'
 
 class StoreIndex extends React.Component {
   render() {

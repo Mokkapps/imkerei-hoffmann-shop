@@ -90,7 +90,7 @@ class MobileMenu extends Component {
 
   render() {
     const { open, activeItem } = this.state
-    const { token, cartCount } = this.props
+    const { cartCount } = this.props
 
     return (
       <Menu size="huge" borderless pointing>
@@ -142,26 +142,6 @@ class MobileMenu extends Component {
                 <StyledLink to="/cart/" onClick={this.handleClose}>
                   {`Shopping Cart ${cartCount ? `(${cartCount})` : ''}`}
                 </StyledLink>
-                <StyledDivider />
-                {token ? (
-                  <StyledLink to="/myaccount/" onClick={this.handleClose}>
-                    My Account
-                  </StyledLink>
-                ) : (
-                  [
-                    <StyledLink
-                      to="/register/"
-                      onClick={this.handleClose}
-                      key={1}
-                    >
-                      Sign Up
-                    </StyledLink>,
-                    <StyledDivider key={2} />,
-                    <StyledLink to="/login/" onClick={this.handleClose} key={3}>
-                      Sign In
-                    </StyledLink>,
-                  ]
-                )}
               </StyledContainer>
             </StyledSegment>
           </Portal>

@@ -12,12 +12,14 @@ class Header extends React.PureComponent {
           <MobileMenu
             location={this.props.location}
             // cartCount={this.props.cart.cartCount} // FIXME
+            cartCount={0}
           />
         </Responsive>
         <Responsive minWidth={Responsive.onlyTablet.minWidth}>
           <DesktopMenu
             location={this.props.location}
             // cartCount={this.props.cart.cartCount} //FIXME
+            cartCount={0}
           />
         </Responsive>
       </div>
