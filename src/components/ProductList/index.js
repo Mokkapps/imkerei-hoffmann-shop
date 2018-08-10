@@ -1,25 +1,25 @@
 import React from 'react'
 import { Card, Image, Label } from 'semantic-ui-react'
+import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 
 const mapProductsToItems = products => {
-  console.log('products', products)
   return products.map(product => {
-    console.log('product', product)
-    console.log('product.node', product.node)
-    const { id, price, image, name, featured } = product.node
+    const { id, slug, price, image, name, featured, description } = product.node
+    const { imageSharp } = product
 
     return {
       as: Link,
-      to: `/product/${id}/`,
+      to: `/product/${slug}/`,
       childKey: id,
       image: (
-        <Image src={`/images/${image}`} size="small" centered>
+        <Image>
           {featured ? (
             <Label color="red" ribbon style={{ zIndex: '1' }}>
               New!
             </Label>
           ) : null}
+          <Img title={name} alt={name} resolutions={imageSharp.resolutions}/>
         </Image>
       ),
       header: name,

@@ -1,6 +1,6 @@
 {
   "name": "imkerei-hoffmann-shop",
-  "description": "Shop website for our family-run honey farm ",
+  "description": "Shop website for our family-run honey farm",
   "version": "1.0.0",
   "author": "Michael Hoffmann <kontakt@mokkaps.de>",
   "dependencies": {

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Input, Icon, Transition } from 'semantic-ui-react'
 
+import LS_CART_KEY from '../../constants'
+
 export default class AddToCart extends React.Component {
   state = {
     error: '',
-    loading: false,
     quantity: 1,
     visible: false,
   }
@@ -12,34 +13,16 @@ export default class AddToCart extends React.Component {
   _handleSubmit = (e, context) => {
     const { productId } = this.props
     const { quantity } = this.state
-    const cartId = localStorage.getItem('mcart')
+    const storedCart = localStorage.getItem(LS_CART_KEY)
 
     const error = this.validate(quantity)
     this.setState({ error })
     if (!error) {
+      console.log('Add to cart', quantity, productId, storedCart)
+    } else {
       this.setState({
-        loading: true,
+        error: 'Something went wrong',
       })
-
-      // Moltin.addToCart(cartId, productId, quantity)
-      //   .then(() => {
-      //     context.addToCart(quantity, cartId)
-
-      //     this.setState(
-      //       {
-      //         loading: false,
-      //         quantity: 1,
-      //         visible: true,
-      //       },
-      //       this.toggleMessage()
-      //     )
-      //   })
-      //   .catch(() =>
-      //     this.setState({
-      //       error: 'Something went wrong',
-      //       loading: false,
-      //     })
-      //   )
     }
   }
 

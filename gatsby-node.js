@@ -32,15 +32,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       graphql(
         `
           {
-            allProductsJson(limit: 1000) {
+            allProductsJson {
               edges {
                 node {
                   id
+                  slug
                   type
                   price
-                  image
                   name
-                  featured,
+                  featured
                   description
                 }
               }
@@ -49,11 +49,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         `
       ).then(result => {
         if (result.errors) {
+          console.error(result.errors)
           reject(new Error(result.errors))
         }
 
         // Create image post pages.
-        const postTemplate = path.resolve(`src/components/ProductSummary/index.js`)
+        const postTemplate = path.resolve(
+          `src/components/ProductSummary/index.js`
+        )
         // We want to create a detailed page for each
         // Instagram post. Since the scrapped Instagram data
         // already includes an ID field, we just use that for
@@ -67,15 +70,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             // as a template component. The `context` is
             // optional but is often necessary so the template
             // can query data specific to each page.
-            path: `/product/${slug(edge.node.id)}/`,
+            path: `/product/${slug(edge.node.slug)}/`,
             component: slash(postTemplate),
             context: {
               id: edge.node.id,
               name: edge.node.name,
+              slug: edge.node.slug,
               description: edge.node.description,
               price: edge.node.price,
-              type: edge.node.type,
-              image: edge.node.image
+              type: edge.node.type
             },
           })
         })

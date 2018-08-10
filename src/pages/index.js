@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
@@ -7,6 +5,13 @@ import Helmet from 'react-helmet'
 import ProductList from '../components/ProductList'
 
 class StoreIndex extends React.Component {
+  addGatsbyImageToProduct = () => {
+    const products = this.props.data.allProductsJson.edges
+    return products.map(product => {
+      return { ...product, imageSharp: this.props.data[product.node.id] }
+    })
+  }
+
   render() {
     const siteTitle = 'Imkerei Hoffmann'
     return (
@@ -19,7 +24,7 @@ class StoreIndex extends React.Component {
             </Header>
           </Header.Content>
         </Header>
-        <ProductList products={this.props.data.allProductsJson.edges}/>
+        <ProductList products={this.addGatsbyImageToProduct()} />
       </div>
     )
   }
@@ -27,18 +32,27 @@ class StoreIndex extends React.Component {
 
 export default StoreIndex
 
-
 export const query = graphql`
   query ProductList {
-    allProductsJson(limit: 1000) {
+    allProductsJson {
       edges {
         node {
           id
+          slug
           price
-          image
           name
           featured
         }
+      }
+    }
+    honey1: imageSharp(id: { regex: "/blossom-honey/" }) {
+      resolutions(width: 250, height: 250) {
+        ...GatsbyImageSharpResolutions
+      }
+    }
+    honey2: imageSharp(id: { regex: "/forest-honey/" }) {
+      resolutions(width: 250, height: 250) {
+        ...GatsbyImageSharpResolutions
       }
     }
   }
