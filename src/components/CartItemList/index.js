@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 import { Item, Button, Loader, Message, Responsive } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-export default ({ items, removeFromCart, loading, completed }) => {
+export default ({ imageData, items, removeFromCart, loading, completed }) => {
   if (loading) return <Loader active inline="centered" />
 
   if (completed)
@@ -17,38 +18,32 @@ export default ({ items, removeFromCart, loading, completed }) => {
   if (items.length === 0)
     return (
       <Message warning>
-        <Message.Header>Your cart is empty</Message.Header>
+        <Message.Header>Warenkorb ist leer</Message.Header>
         <p>
-          You'll need to add some items to the cart before you can checkout.
+          Sie müssen erst Artikel dem Warenkorb hinzufügen, bevor Sie zur Kasse gehen können.
         </p>
       </Message>
     )
-  const mapCartItemsToItems = items =>
-    items.map(({ id, product_id, name, quantity, meta, image, price }) => {
-      const imageUrl = image.href || '/static/moltin-light-hex.svg'
+  const mapCartItemsToItems = (imageData, items) =>
+    items.map(({ id, slug, name, quantity, description, image, price }) => {
+      const imageSharp = imageData[id]
 
       const DesktopItemImage = () => (
-        <Item.Image
-          src={imageUrl}
-          alt={name}
-          size="small"
-          style={{ background: '#f2f2f2' }}
-        />
+        <Item.Image alt={name} style={{ background: '#f2f2f2' }}>
+          <Img resolutions={imageSharp.resolutions} title={name} alt={name} />
+        </Item.Image>
       )
       const MobileItemImage = () => (
-        <Item.Image
-          src={imageUrl}
-          alt={name}
-          size="small"
-          style={{ background: 'none' }}
-        />
+        <Item.Image alt={name} style={{ background: '#none' }}>
+          <Img resolutions={imageSharp.resolutions} title={name} alt={name} />
+        </Item.Image>
       )
 
       return {
         childKey: id,
         header: (
           <Item.Header>
-            <Link to={`/product/${product_id}/`}>{name}</Link>
+            <Link to={`/product/${slug}/`}>{name}</Link>
           </Item.Header>
         ),
         image: (
@@ -60,8 +55,8 @@ export default ({ items, removeFromCart, loading, completed }) => {
             />
           </React.Fragment>
         ),
-        meta: `${quantity}x ${price}`,
-        description: 'Some more information goes here....',
+        meta: `${quantity}x ${price.formatted}`,
+        description,
         extra: (
           <Button
             basic
@@ -72,5 +67,5 @@ export default ({ items, removeFromCart, loading, completed }) => {
         ),
       }
     })
-  return <Item.Group divided items={mapCartItemsToItems(items)} />
+  return <Item.Group divided items={mapCartItemsToItems(imageData, items)} />
 }

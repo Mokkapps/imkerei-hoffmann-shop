@@ -7,10 +7,8 @@ import AddToCart from '../AddToCart'
 
 class ProductSummary extends React.Component {
   render() {
-    console.log('ProductSummary props', this.props)
     const { id, name, price, type } = this.props.pathContext
     const imageSharp = this.props.data[id]
-    console.log('ProductSummary imageSharp', imageSharp)
     return (
       <Item.Group>
         <Item style={{ alignItems: 'center' }}>
@@ -24,7 +22,7 @@ class ProductSummary extends React.Component {
           <Item.Content>
             <Item.Header>{name}</Item.Header>
             <Item.Description>
-              <p>{price}</p>
+              <p>{price.formatted}</p>
               <Label>Type: {type}</Label>
             </Item.Description>
             <Item.Extra>

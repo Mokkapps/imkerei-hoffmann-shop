@@ -140,7 +140,7 @@ class MobileMenu extends Component {
                 </StyledLink>
                 <StyledDivider />
                 <StyledLink to="/cart/" onClick={this.handleClose}>
-                  {`Shopping Cart ${cartCount ? `(${cartCount})` : ''}`}
+                  {`Warenkorb ${cartCount ? `(${cartCount})` : ''}`}
                 </StyledLink>
               </StyledContainer>
             </StyledSegment>

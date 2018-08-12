@@ -15,7 +15,7 @@ const Footer = () => (
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={4}>
-            <Header as="h4" content="About" />
+            <Header as="h4" content="Rechtliches" />
             <List>
               <List.Item as={Link} to="/privacy/">
                 Privacy
@@ -29,40 +29,22 @@ const Footer = () => (
             <Header as="h4" content="Services" />
             <List>
               <List.Item as={Link} to="/">
-                Our Products
+                Unsere Produkte
               </List.Item>
-              <List.Item as={Link} to="/gatsbyimage/">
-                Gatsby Image Example
+              <List.Item as={Link} to="/team">
+                Das Team
               </List.Item>
             </List>
           </Grid.Column>
           <Grid.Column width={7}>
-            <Header as="h4">Footer Header</Header>
-            <p>
-              Extra space for a call to action inside the footer that could help
-              re-engage users.
-            </p>
+            <Header as="h4">Über uns</Header>
+            <p>Wir sind ein Familienbetrieb aus Niederbayern</p>
+            <p>Entwickelt mit von &hearts; von <a href="https://mokkapps.de">Mokkapps</a></p>
             <List horizontal>
-              <List.Item
-                icon="twitter"
-                content={
-                  <a href="https://twitter.com/parmsang" alt="twitter link">
-                    Twitter
-                  </a>
-                }
-              />
-              <List.Item
-                icon="facebook"
-                content={
-                  <a href="https://facebook.com/" alt="facebook link">
-                    Facebook
-                  </a>
-                }
-              />
               <List.Item
                 icon="mail"
                 content={
-                  <a href="#" alt="email link">
+                  <a href="mailto:kontakt@hoffmann-imkerei.de" alt="email link">
                     Email
                   </a>
                 }

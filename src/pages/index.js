@@ -39,7 +39,11 @@ export const query = graphql`
         node {
           id
           slug
-          price
+          price {
+            formatted
+            amount
+            currency
+          }
           name
           featured
         }

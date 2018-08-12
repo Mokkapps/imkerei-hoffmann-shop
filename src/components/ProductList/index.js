@@ -23,7 +23,7 @@ const mapProductsToItems = products => {
         </Image>
       ),
       header: name,
-      meta: <Card.Meta style={{ color: 'dimgray' }}>{price}</Card.Meta>,
+      meta: <Card.Meta style={{ color: 'dimgray' }}>{price.formatted}</Card.Meta>,
     }
   })
 }

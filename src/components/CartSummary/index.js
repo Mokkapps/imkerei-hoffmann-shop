@@ -2,20 +2,15 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import { Button, Segment, Divider } from 'semantic-ui-react'
 
-export default ({
-  handleCheckout,
-  display_price: {
-    with_tax: { amount, currency, formatted },
-  },
-}) => (
+export default ({ handleCheckout, totalPrice: { amount, formatted, currency } }) => (
   <div>
     <Divider />
     <Segment clearing size="large">
-      <strong>Sub total:</strong> {formatted}
+      <strong>Gesamtsumme:</strong> {formatted}
       <StripeCheckout
-        name="Gatsby Store"
+        name="Imkerei Hoffmann Shop"
         amount={amount}
-        currency={currency || 'GBP'}
+        currency={currency || 'EUR'}
         stripeKey={process.env.STRIPE_PUBLISHABLE_KEY || ''}
         shippingAddress={false}
         billingAddress
@@ -25,7 +20,7 @@ export default ({
         triggerEvent="onClick"
       >
         <Button color="black" floated="right">
-          Check out
+          Zur Kasse
         </Button>
       </StripeCheckout>
     </Segment>

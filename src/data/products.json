@@ -4,8 +4,12 @@
     "type": "Honig",
     "id": "honey1",
     "slug": "forest-honey",
-    "description": "desc",
-    "price": "1 €",
+    "description": "Dunkel und lecker",
+    "price": {
+      "formatted": "1€",
+      "amount": "1",
+      "currency": "EUR"
+    },
     "featured": false,
     "status": "available"
   },
@@ -14,8 +18,12 @@
     "type": "Honig",
     "id": "honey2",
     "slug": "blossom-honey",
-    "description": "desc",
-    "price": "2 €",
+    "description": "Aus feinsten Blüten",
+    "price": {
+      "formatted": "2€",
+      "amount": "2",
+      "currency": "EUR"
+    },
     "featured": false,
     "status": "available"
   }

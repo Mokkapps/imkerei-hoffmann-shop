@@ -38,7 +38,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   id
                   slug
                   type
-                  price
+                  price {
+                    formatted
+                    amount
+                    currency
+                  }
                   name
                   featured
                   description
