@@ -10,9 +10,7 @@ const path = require(`path`)
 const slug = require(`slug`)
 const slash = require(`slash`)
 
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+require('dotenv').config();
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
