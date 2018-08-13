@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Loader, Message, Segment } from 'semantic-ui-react'
 
-import { AWS_LAMBDA_URL } from '../constants'
 import CartItemList from '../components/CartItemList/'
 import CartSummary from '../components/CartSummary/'
 
@@ -25,25 +24,20 @@ class ConnectedCart extends React.Component {
     paymentResponse: null,
   }
 
-  handleCheckout = token => {
-    console.log('handleCheckout', token)
-
-    const { id } = token
-
+  handleCheckout = (token, args) => {
     this.setState({ loading: true })
 
-    fetch(AWS_LAMBDA_URL, {
+    fetch(process.env.AWS_LAMBDA_URL, {
       method: 'POST',
       body: JSON.stringify({
-        token: id,
-        amount,
+        token,
+        amount: 1000,
       }),
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
     })
       .then(res => {
-        console.log('Transaction processed successfully')
         this.setState({
           paymentResponse: {
             success: true,

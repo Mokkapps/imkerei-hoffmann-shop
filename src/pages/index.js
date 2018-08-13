@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Message } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
 
 import ProductList from '../components/ProductList'
@@ -17,6 +17,10 @@ class StoreIndex extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
+        <Message info>
+          <Message.Header>Demo Shop</Message.Header>
+          <p>Bestellungen funktionieren nicht, es ist nur eine Testanbindung</p>
+        </Message>
         <Header as="h3" icon textAlign="center" style={{ marginBottom: '2em' }}>
           <Header.Content style={{ width: '60%', margin: '0 auto' }}>
             <Header as="h2" icon>

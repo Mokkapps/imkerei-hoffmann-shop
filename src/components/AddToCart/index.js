@@ -21,6 +21,10 @@ class ConnectedAddToCart extends React.Component {
     visible: false,
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timeoutId)
+  }
+
   _handleSubmit = (e, context) => {
     const { productId, cart } = this.props
     const { quantity } = this.state
@@ -43,7 +47,7 @@ class ConnectedAddToCart extends React.Component {
   }
 
   toggleMessage = () => {
-    setTimeout(() => {
+    this.timeoutId = setTimeout(() => {
       this.setState({ visible: false })
     }, 1000)
   }

@@ -6,7 +6,7 @@ const getColumns = data =>
   data.allTeamJson.edges.map(t => t.node).map(teamMember => {
     const { name, imageId, description, role } = teamMember
     return (
-      <Card>
+      <Card key={imageId}>
         <Img resolutions={data[imageId].resolutions} alt={name} />
         <Card.Content>
           <Card.Header>{name}</Card.Header>
