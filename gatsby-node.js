@@ -10,6 +10,10 @@ const path = require(`path`)
 const slug = require(`slug`)
 const slash = require(`slash`)
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
 // access to any information necessary to programmatically
@@ -35,9 +39,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             allTeamJson {
               edges {
                 node {
-                  name,
-                  imageId,
-                  role,
+                  name
+                  imageId
+                  role
                   description
                 }
               }
@@ -92,7 +96,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               slug: edge.node.slug,
               description: edge.node.description,
               price: edge.node.price,
-              type: edge.node.type
+              type: edge.node.type,
             },
           })
         })

@@ -2,7 +2,9 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Loader, Message, Segment } from 'semantic-ui-react'
 
+import { AWS_LAMBDA_URL } from '../constants'
 import CartItemList from '../components/CartItemList/'
 import CartSummary from '../components/CartSummary/'
 
@@ -18,8 +20,50 @@ const mapDispatchToProps = dispatch => {
 }
 
 class ConnectedCart extends React.Component {
-  handleCheckout = data => {
-    console.log('Checkout', data)
+  state = {
+    loading: false,
+    paymentResponse: null,
+  }
+
+  handleCheckout = token => {
+    console.log('handleCheckout', token)
+
+    const { id } = token
+
+    this.setState({ loading: true })
+
+    fetch(AWS_LAMBDA_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        token: id,
+        amount,
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then(res => {
+        console.log('Transaction processed successfully')
+        this.setState({
+          paymentResponse: {
+            success: true,
+            message: '',
+          },
+        })
+        return res.json()
+      })
+      .catch(error => {
+        console.error('Error:', error)
+        this.setState({
+          paymentResponse: {
+            success: false,
+            message: error,
+          },
+        })
+      })
+      .finally(() => {
+        this.setState({ loading: false })
+      })
   }
 
   handleRemoveFromCart = productId => {
@@ -43,36 +87,55 @@ class ConnectedCart extends React.Component {
   getTotalPrice = () => {
     const cartItems = this.getCartItems()
 
-    let totalPrice = 0
+    let totalPriceInEuro = 0
 
     for (const cartItem of cartItems) {
       const {
         quantity,
         price: { amount },
       } = cartItem
-      totalPrice += quantity * Number(amount)
+      totalPriceInEuro += quantity * Number(amount)
     }
 
     return {
-      amount: totalPrice,
+      amountInCents: totalPriceInEuro * 100,
       currency: 'EUR',
-      formatted: `${totalPrice}€`
+      formatted: `${totalPriceInEuro}€`,
     }
   }
 
   render() {
+    const { loading, paymentResponse } = this.state
     return (
       <div>
         <Helmet title="Cart" />
-        <CartItemList
-          imageData={this.props.data}
-          items={this.getCartItems()}
-          removeFromCart={item => this.handleRemoveFromCart(item)}
-        />
-        <CartSummary
-          totalPrice={this.getTotalPrice()}
-          handleCheckout={this.handleCheckout}
-        />
+        <Loader active={loading} inline="centered">
+          Bearbeite Bezahlung...
+        </Loader>
+        {paymentResponse ? (
+          <Message
+            negative={!paymentResponse.success}
+            positive={paymentResponse.success}
+          >
+            <Message.Header>
+              {paymentResponse.success
+                ? 'Bezahlung erfolgt'
+                : 'Fehler beim Bezahlen'}
+            </Message.Header>
+            <p>{paymentResponse.message}</p>
+          </Message>
+        ) : null}
+        <Segment disabled={loading}>
+          <CartItemList
+            imageData={this.props.data}
+            items={this.getCartItems()}
+            removeFromCart={item => this.handleRemoveFromCart(item)}
+          />
+          <CartSummary
+            totalPrice={this.getTotalPrice()}
+            handleCheckout={this.handleCheckout}
+          />
+        </Segment>
       </div>
     )
   }
