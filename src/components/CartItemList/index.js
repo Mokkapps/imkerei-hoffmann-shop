@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import { Item, Button, Loader, Message, Responsive } from 'semantic-ui-react'
-import styled from 'styled-components'
 
 export default ({ imageData, items, removeFromCart, loading, completed }) => {
   if (loading) return <Loader active inline="centered" />

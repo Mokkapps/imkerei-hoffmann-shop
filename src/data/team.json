@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Renate Hoffmann",
+    "role": "Imkerin aus Leidenschaft",
+    "description": "Beschreibung folgt",
+    "imageId": "team1"
+  },
+  {
+    "name": "Michael Hoffmann",
+    "role": "CTO",
+    "description": "Beschreibung folgt",
+    "imageId": "team2"
+  },
+  {
+    "name": "Oskar Hoffmann",
+    "role": "Kastenbauer",
+    "description": "Beschreibung folgt",
+    "imageId": "team3"
+  }
+]

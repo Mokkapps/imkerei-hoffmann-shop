@@ -32,6 +32,16 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       graphql(
         `
           {
+            allTeamJson {
+              edges {
+                node {
+                  name,
+                  imageId,
+                  role,
+                  description
+                }
+              }
+            }
             allProductsJson {
               edges {
                 node {

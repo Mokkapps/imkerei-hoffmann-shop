@@ -20,7 +20,7 @@ class StoreIndex extends React.Component {
         <Header as="h3" icon textAlign="center" style={{ marginBottom: '2em' }}>
           <Header.Content style={{ width: '60%', margin: '0 auto' }}>
             <Header as="h2" icon>
-              Verfügbare Produkte
+              Produkte
             </Header>
           </Header.Content>
         </Header>

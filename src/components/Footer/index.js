@@ -18,10 +18,10 @@ const Footer = () => (
             <Header as="h4" content="Rechtliches" />
             <List>
               <List.Item as={Link} to="/privacy/">
-                Privacy
+                Datenschutzerklärung
               </List.Item>
-              <List.Item as={Link} to="/terms/">
-                Terms
+              <List.Item as={Link} to="/legal-notice/">
+                Impressum
               </List.Item>
             </List>
           </Grid.Column>
@@ -39,7 +39,10 @@ const Footer = () => (
           <Grid.Column width={7}>
             <Header as="h4">Über uns</Header>
             <p>Wir sind ein Familienbetrieb aus Niederbayern</p>
-            <p>Entwickelt mit von &hearts; von <a href="https://mokkapps.de">Mokkapps</a></p>
+            <p>
+              Entwickelt mit von &hearts; von{' '}
+              <a href="https://mokkapps.de">Mokkapps</a>
+            </p>
             <List horizontal>
               <List.Item
                 icon="mail"

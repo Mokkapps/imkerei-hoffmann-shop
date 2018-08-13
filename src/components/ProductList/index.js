@@ -5,7 +5,7 @@ import Link from 'gatsby-link'
 
 const mapProductsToItems = products => {
   return products.map(product => {
-    const { id, slug, price, image, name, featured, description } = product.node
+    const { id, slug, price, name, featured } = product.node
     const { imageSharp } = product
 
     return {
@@ -19,11 +19,13 @@ const mapProductsToItems = products => {
               New!
             </Label>
           ) : null}
-          <Img title={name} alt={name} resolutions={imageSharp.resolutions}/>
+          <Img title={name} alt={name} resolutions={imageSharp.resolutions} />
         </Image>
       ),
       header: name,
-      meta: <Card.Meta style={{ color: 'dimgray' }}>{price.formatted}</Card.Meta>,
+      meta: (
+        <Card.Meta style={{ color: 'dimgray' }}>{price.formatted}</Card.Meta>
+      ),
     }
   })
 }
